@@ -20,7 +20,9 @@ class App extends Component {
   }
 
   getNotes = () => {
-    axios.get('https://firehose-note-api.herokuapp.com/notes')
+    axios.get('https://note-api-sharon-huang.herokuapp.com/notes')
+    .then((res) => console.log(res.data) )
+    .catch((err) => console.log(err.response.data) );
   }
 
   render() {
@@ -29,7 +31,7 @@ class App extends Component {
     return (
       <div className="App">
          <Nav toggleNote={this.toggleNote} showNote={showNote} />
-        { showNote ? <Note /> : <List /> }
+        { showNote ? <Note /> : <List getNotes={this.getNotes}/> }
       </div>
     );
   }
